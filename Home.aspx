@@ -341,7 +341,7 @@
                 <div class="stats-grid">
                     <div class="stat-card books-total">
                         <div class="stat-icon">
-                            <i class="fas fa-books"></i>
+                            <i class="fas fa-book-open"></i>
                         </div>
                         <div class="stat-data">
                             <div class="stat-value">0</div>

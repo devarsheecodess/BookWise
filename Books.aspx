@@ -1,11 +1,10 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Books.aspx.cs" Inherits="LibrarySystem.Books" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Books.aspx.cs" Inherits="LibrarySystem.Books" %>
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
-    <title>BookWise - Book Management</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Add Book - BookWise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #4361ee;
@@ -118,57 +117,6 @@
             align-items: center;
         }
 
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background-color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .user-info {
-            flex: 1;
-        }
-
-        .user-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .user-role {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        .logout-btn {
-            margin-top: 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            text-align: center;
-            color: var(--white) !important;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.875rem 1rem;
-            cursor: pointer;
-        }
-        
-        .logout-btn:hover {
-            background-color: rgba(231, 29, 54, 0.2);
-        }
-
-        .logout-btn i {
-            margin-right: 10px;
-        }
-
         /* Main Content Styles */
         .main-content {
             flex: 1;
@@ -205,49 +153,63 @@
             border-radius: 12px;
         }
 
-        .date-info {
-            text-align: right;
-            font-size: 0.95rem;
+        .breadcrumb {
+            font-size: 0.9rem;
             color: var(--text-light);
-        }
-
-        .date-info .current-date {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 1.1rem;
             margin-bottom: 4px;
         }
 
-        /* Book Management Section */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 1.5rem;
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
         }
 
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Card Styles */
         .card {
             background-color: var(--white);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 2rem;
             box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .form-card {
-            height: fit-content;
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .form-title {
+        .card-title {
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
         }
 
-        .form-title i {
+        .card-title i {
             margin-right: 10px;
             color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group {
@@ -264,42 +226,54 @@
 
         .form-control {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1rem;
             font-size: 0.95rem;
             line-height: 1.5;
             color: var(--text);
             background-color: var(--white);
-            border: 1px solid #ddd;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
             transition: var(--transition);
+            font-family: inherit;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            background-color: var(--white);
         }
 
+        .form-control:hover {
+            border-color: #cbd5e0;
+        }
+
+        /* Button Styles */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 500;
             text-align: center;
             white-space: nowrap;
             vertical-align: middle;
             cursor: pointer;
-            padding: 0.75rem 1.5rem;
+            padding: 0.875rem 1.75rem;
             font-size: 1rem;
             line-height: 1.5;
             border-radius: 8px;
             transition: var(--transition);
-            color: var(--white);
-            background-color: var(--primary);
             border: none;
+            text-decoration: none;
         }
 
         .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .btn-primary {
@@ -307,394 +281,583 @@
             color: var(--white);
         }
 
-        .btn-success {
-            background-color: var(--success);
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--text-light);
             color: var(--white);
         }
 
-        .btn-warning {
-            background-color: var(--warning);
-            color: var(--white);
+        .btn-secondary:hover {
+            background-color: #6b7280;
         }
 
-        .btn-danger {
-            background-color: var(--danger);
-            color: var(--white);
-        }
-
-        /* Book List Section */
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .section-title i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-
-        .books-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .books-table th,
-        .books-table td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-        }
-
-        .books-table th {
-            font-weight: 600;
-            color: var(--text-light);
+        .btn i {
+            margin-right: 8px;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .books-table td {
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            vertical-align: middle;
-        }
-
-        .books-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .book-title {
-            display: flex;
-            align-items: center;
-        }
-
-        .book-color {
-            width: 30px;
-            height: 18px;
-            border-radius: 4px;
+        /* Icon styles for ASP.NET buttons */
+        .btn-primary::before {
+            content: '\f067';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
             margin-right: 8px;
         }
 
-        .availability-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
+        .btn-secondary::before {
+            content: '\f0e2';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 8px;
         }
 
-        .avail-yes {
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* Message Styles */
+        .message {
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .message i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .message.error {
+            background-color: rgba(231, 29, 54, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(231, 29, 54, 0.2);
+        }
+
+        .message.success {
             background-color: rgba(46, 196, 182, 0.1);
             color: var(--success);
+            border: 1px solid rgba(46, 196, 182, 0.2);
         }
 
-        .avail-no {
-            background-color: rgba(231, 29, 54, 0.1);
-            color: var(--danger);
-        }
-
-        .avail-limited {
+        .message.warning {
             background-color: rgba(255, 159, 28, 0.1);
             color: var(--warning);
+            border: 1px solid rgba(255, 159, 28, 0.2);
         }
 
-        .action-links {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .action-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .edit-link {
-            background-color: rgba(63, 142, 252, 0.1);
-            color: var(--secondary);
-        }
-
-        .edit-link:hover {
-            background-color: rgba(63, 142, 252, 0.2);
-        }
-
-        .delete-link {
-            background-color: rgba(231, 29, 54, 0.1);
+        /* Required Field Indicator */
+        .required {
             color: var(--danger);
+            margin-left: 3px;
         }
 
-        .delete-link:hover {
-            background-color: rgba(231, 29, 54, 0.2);
-        }
-
-        /* Search and Filter Bar */
-        .search-filter-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.25rem;
-        }
-
-        .search-container {
+        /* Input Groups */
+        .input-group {
             position: relative;
-            max-width: 400px;
-            width: 100%;
         }
 
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            font-size: 0.95rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-        }
-
-        .search-icon {
+        .input-group-icon {
             position: absolute;
-            left: 0.75rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
+            font-size: 1rem;
+            z-index: 2;
         }
 
-        .filter-btn {
-            padding: 0.75rem 1rem;
-            font-size: 0.95rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: var(--white);
-            color: var(--text);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
+        .input-group .form-control {
+            padding-left: 2.75rem;
         }
 
-        .filter-btn i {
-            margin-right: 8px;
+        /* Animation and Loading States */
+        .btn.loading {
+            position: relative;
+            color: transparent;
         }
 
-        .filter-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
             .main-content {
                 margin-left: 0;
+                padding: 1.5rem;
             }
             
-            .menu-toggle {
-                display: flex;
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
 
         @media (max-width: 576px) {
-            .main-content {
-                padding: 1.5rem;
+            .page-title {
+                font-size: 1.5rem;
             }
             
-            .search-filter-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .search-container {
-                max-width: 100%;
+            .form-actions {
+                gap: 0.75rem;
             }
         }
+
+        /* Hide original form styling */
+        #form1 {
+            margin-left: 0;
+        }
+
+        /* Custom styling for ASP.NET controls */
+        input[type="text"], input[type="number"], textarea, select {
+            background-color: var(--white) !important;
+        }
+
+        /* Book Inventory Section */
+.inventory-section {
+    margin-top: 2rem;
+}
+
+.inventory-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+}
+
+.inventory-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.inventory-title::before {
+    content: '\f02d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 12px;
+    color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+/* Enhanced GridView Styles */
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.books-table th {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border: none;
+}
+
+.books-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    vertical-align: middle;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.books-table tr:last-child td {
+    border-bottom: none;
+}
+
+.books-table tr:hover {
+    background-color: rgba(67, 97, 238, 0.02);
+    transition: var(--transition);
+}
+
+/* Empty data styling */
+.books-table .empty-data {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-light);
+    font-style: italic;
+    background-color: rgba(0,0,0,0.02);
+}
+
+.books-table .empty-data::before {
+    content: '\f02d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    display: block;
+    font-size: 3rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+/* Column-specific styling */
+.books-table td:nth-child(1) {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.books-table td:nth-child(3) {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background-color: rgba(0,0,0,0.02);
+}
+
+.books-table td:nth-child(6) {
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .books-table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+    }
+    
+    .books-table {
+        min-width: 600px;
+        box-shadow: none;
+    }
+    
+    .books-table th,
+    .books-table td {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Live Search Styling */
+.search-section {
+    margin-bottom: 1.5rem;
+}
+
+.search-container {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+}
+
+#txtLiveSearch {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--text);
+    background-color: var(--white);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    transition: var(--transition);
+    font-family: inherit;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+#txtLiveSearch:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1), 0 4px 12px rgba(0,0,0,0.05);
+    background-color: var(--white);
+}
+
+#txtLiveSearch:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+}
+
+/* Loading state */
+.search-container.loading::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: search-spin 1s linear infinite;
+}
+
+@keyframes search-spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.search-container.has-text .search-clear {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-clear:hover {
+    background-color: rgba(0,0,0,0.05);
+    color: var(--danger);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-container {
+        max-width: 100%;
+    }
+    
+    #txtLiveSearch {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="dashboard-container">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <span class="logo-icon"><i class="fas fa-book-open"></i></span>
-                    <h2 class="sidebar-brand">BookWise</h2>
-                </div>
-                
-                <div class="nav-menu">
-                    <a href="Home.aspx" class="nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
-                        
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="Books.aspx" class="nav-link active">
-                        <i class="fas fa-book"></i>
-                        <span>Books</span>
-                    </a>
-                    <a href="AddBorrowed.aspx" class="nav-link">
-                        <i class="fas fa-bookmark"></i>
-                        <span>Borrowed Books</span>
-                    </a>
-                </div>
-                
-                <!-- Logout Button -->
-                <a class="logout-btn" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+                <h2 class="sidebar-brand">BookWise</h2>
+            </div>
+
+            <div class="nav-menu">
+                <a href="Home.aspx" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="Books.aspx" class="nav-link active">
+                    <i class="fas fa-book"></i>
+                    <span>Books</span>
+                </a>
+                <a href="AddBorrowed.aspx" class="nav-link">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Borrowed Books</span>
                 </a>
             </div>
-            
-            <!-- Main Content -->
-            <div class="main-content">
-                <div class="top-bar">
+        </div>
+
+        <div class="main-content">
+            <div class="top-bar">
+                <div>
                     <h1 class="page-title">
-                        <i class="fas fa-book"></i>
-                        Books
+                        <i class="fas fa-plus-circle"></i>
+                        Add New Book
                     </h1>
                 </div>
+            </div>
+
+            <form id="form1" runat="server">
+                <asp:HiddenField ID="hdnUserID" runat="server" Value="1" />
                 
-                <!-- Book Management Section -->
-                <div class="content-grid">
-                    <!-- Book Form -->
-                    <div class="card form-card">
-                        <h2 class="form-title"><i class="fas fa-plus-circle"></i>Add New Book</h2>
-                        
-                        <div class="form-group">
-                            <label for="txtBookTitle" class="form-label">Book Title</label>
-                            <asp:TextBox ID="txtBookTitle" runat="server" CssClass="form-control" Placeholder="Enter book title" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtAuthor" class="form-label">Author</label>
-                            <asp:TextBox ID="txtAuthor" runat="server" CssClass="form-control" Placeholder="Enter author name" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtISBN" class="form-label">ISBN</label>
-                            <asp:TextBox ID="txtISBN" runat="server" CssClass="form-control" Placeholder="Enter ISBN number" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtPublisher" class="form-label">Publisher</label>
-                            <asp:TextBox ID="txtPublisher" runat="server" CssClass="form-control" Placeholder="Enter publisher name" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtPublishYear" class="form-label">Publication Year</label>
-                            <asp:TextBox ID="txtPublishYear" runat="server" CssClass="form-control" Placeholder="Enter publication year" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="txtQuantity" class="form-label">Quantity</label>
-                            <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" Placeholder="Enter quantity" TextMode="Number" />
-                        </div>
-                        
-                        <asp:Button ID="btnAddBook" runat="server" Text="Add Book" CssClass="btn btn-primary" />
+                <!-- Message Display -->
+                <asp:Label ID="lblMessage" runat="server" CssClass="message" Visible="false"></asp:Label>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-book"></i>
+                            Book Information
+                        </h2>
                     </div>
-                    
-                    <!-- Book List Table -->
-                    <div class="card">
-                        <div class="search-filter-bar">
-                            <div class="search-container">
-                                <i class="fas fa-search search-icon"></i>
-                                <input type="text" class="search-input" placeholder="Search books...">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtBookTitle.ClientID %>">
+                                Title <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-heading"></i>
+                                <asp:TextBox ID="txtBookTitle" runat="server" CssClass="form-control" 
+                                           placeholder="Enter book title" required="true" />
                             </div>
                         </div>
-                        
-                        <h2 class="section-title"><i class="fas fa-list"></i>Book Inventory</h2>
-                        
-                        <table class="books-table">
-                            <thead>
-                                <tr>
-                                    <th>Book Title</th>
-                                    <th>Author</th>
-                                    <th>ISBN</th>
-                                    <th>Publication</th>
-                                    <th>Available</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Sample data -->
-                                <tr>
-                                    <td class="book-title">
-                                        <div class="book-color" style="background-color: #4361ee;"></div>
-                                        <span>The Great Gatsby</span>
-                                    </td>
-                                    <td>F. Scott Fitzgerald</td>
-                                    <td>9780743273565</td>
-                                    <td>2004</td>
-                                    <td><span class="availability-badge avail-yes">In Stock (5)</span></td>
-                                    <td class="action-links">
-                                        <a href="#" class="action-link edit-link"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="action-link delete-link"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="book-title">
-                                        <div class="book-color" style="background-color: #ff9f1c;"></div>
-                                        <span>To Kill a Mockingbird</span>
-                                    </td>
-                                    <td>Harper Lee</td>
-                                    <td>9780061120084</td>
-                                    <td>2006</td>
-                                    <td><span class="availability-badge avail-limited">Low Stock (1)</span></td>
-                                    <td class="action-links">
-                                        <a href="#" class="action-link edit-link"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="action-link delete-link"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="book-title">
-                                        <div class="book-color" style="background-color: #e71d36;"></div>
-                                        <span>1984</span>
-                                    </td>
-                                    <td>George Orwell</td>
-                                    <td>9780451524935</td>
-                                    <td>1950</td>
-                                    <td><span class="availability-badge avail-no">Out of Stock</span></td>
-                                    <td class="action-links">
-                                        <a href="#" class="action-link edit-link"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="action-link delete-link"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtAuthor.ClientID %>">
+                                Author <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-user"></i>
+                                <asp:TextBox ID="txtAuthor" runat="server" CssClass="form-control" 
+                                           placeholder="Enter author name" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtISBN.ClientID %>">
+                                ISBN <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-barcode"></i>
+                                <asp:TextBox ID="txtISBN" runat="server" CssClass="form-control" 
+                                           placeholder="Enter ISBN number" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtPublisher.ClientID %>">
+                                Publisher
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-building"></i>
+                                <asp:TextBox ID="txtPublisher" runat="server" CssClass="form-control" 
+                                           placeholder="Enter publisher name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtPublishYear.ClientID %>">
+                                Publish Year
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-calendar"></i>
+                                <asp:TextBox ID="txtPublishYear" runat="server" CssClass="form-control" 
+                                           placeholder="Enter publish year" TextMode="Number" 
+                                           min="1000" max="2100" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="<%= txtQuantity.ClientID %>">
+                                Quantity <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-hashtag"></i>
+                                <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" 
+                                           placeholder="Enter quantity" TextMode="Number" 
+                                           min="1" required="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <asp:Button ID="btnAddBook" runat="server" CssClass="btn btn-primary" 
+                                  Text="Add Book" OnClick="BtnAddBook_Click" />
+                        <button type="reset" class="btn btn-secondary">
+                            Reset Form
+                        </button>
                     </div>
                 </div>
-            </div>
+
+                <div class="card inventory-section">
+    <div class="inventory-header">
+        <h2 class="inventory-title">Book Inventory</h2>
+    </div>
+    
+    <div class="books-table-container">
+    <input type="text" id="txtLiveSearch" placeholder="Search books by title, author, or ISBN..." class="search-input" />
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
+    <asp:HiddenField ID="hdnSearchTerm" runat="server" />
+
+    <asp:Button ID="btnTriggerSearch" runat="server" OnClick="btnTriggerSearch_Click" style="display:none" />
+
+    <asp:UpdatePanel ID="UpdatePanelBooks" runat="server">
+        <ContentTemplate>
+            <asp:GridView ID="gvBooks" runat="server" AutoGenerateColumns="false" CssClass="books-table"
+                DataKeyNames="BookID"
+                OnRowEditing="gvBooks_RowEditing"
+                OnRowCancelingEdit="gvBooks_RowCancelingEdit"
+                OnRowUpdating="gvBooks_RowUpdating"
+                OnRowDeleting="gvBooks_RowDeleting"
+                EmptyDataText="No books found.">
+                <Columns>
+                    <asp:BoundField DataField="Title" HeaderText="Title" />
+                    <asp:BoundField DataField="Author" HeaderText="Author" />
+                    <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
+                    <asp:BoundField DataField="Publisher" HeaderText="Publisher" />
+                    <asp:BoundField DataField="PublishYear" HeaderText="Publish Year" />
+                    <asp:BoundField DataField="Quantity" HeaderText="Quantity Available" />
+                    <asp:CommandField HeaderText="Actions" ShowEditButton="true" ShowDeleteButton="true" />
+                </Columns>
+            </asp:GridView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</div>
+
+</div>
+            </form>
         </div>
-    </form>
+    </div>
 
     <script>
-        const logout = () => {
-            const cf = confirm("Are you sure you want to logout?")
-            if (!cf) return
-            window.location.href = "login.aspx"
+        // Set hidden field value from localStorage if available
+        const userId = localStorage.getItem("userID");
+        if (userId) {
+            document.getElementById('<%= hdnUserID.ClientID %>').value = userId;
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchInput = document.getElementById('txtLiveSearch');
+            var hdnSearchTerm = document.getElementById('<%= hdnSearchTerm.ClientID %>');
+            var btnTriggerSearchUniqueID = '<%= btnTriggerSearch.UniqueID %>';
+            var timer = null;
+
+            searchInput.addEventListener('keyup', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    hdnSearchTerm.value = searchInput.value;  // set hidden field value
+                    __doPostBack(btnTriggerSearchUniqueID, '');  // trigger postback of hidden button
+                }, 300);
+            });
+        });
     </script>
 </body>
 </html>
