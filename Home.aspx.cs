@@ -11,7 +11,13 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack && Session["userName"] != null)
+            {
+                string name = Session["userName"].ToString();
+                string script = $"localStorage.setItem('userName', '{name}');";
+                ClientScript.RegisterStartupScript(this.GetType(), "storeName", script, true);
+                Session["userName"] = null;
+            }
         }
     }
 }

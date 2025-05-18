@@ -574,10 +574,6 @@
                         <i class="fas fa-book"></i>
                         Books
                     </h1>
-                    <div class="date-info">
-                        <div class="current-date"><%= DateTime.Now.ToString("dddd, MMMM dd, yyyy") %></div>
-                        <div class="current-time"><%= DateTime.Now.ToString("hh:mm tt") %></div>
-                    </div>
                 </div>
                 
                 <!-- Book Management Section -->

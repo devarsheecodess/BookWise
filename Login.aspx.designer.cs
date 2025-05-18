@@ -11,7 +11,7 @@ namespace LibrarySystem
 {
 
 
-    public partial class WebForm1
+    public partial class Login
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace LibrarySystem
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// txtLibraryId control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtLibraryId;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
 
         /// <summary>
         /// txtPassword control.
@@ -42,12 +42,12 @@ namespace LibrarySystem
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPassword;
 
         /// <summary>
-        /// btnLogin control.
+        /// Submit1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnLogin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit Submit1;
     }
 }

@@ -171,6 +171,7 @@
         /* Main Content Styles */
         .main-content {
             flex: 1;
+            flex-direction: column;
             padding: 2rem;
             margin-left: 280px;
             transition: var(--transition);
@@ -567,19 +568,15 @@
 
             <!-- Borrow Book Section -->
               <div class="main-content">
-      <div class="top-bar">
-          <h1 class="page-title">
-            <i class="fas fa-bookmark"></i>
-              Borrowers
-          </h1>
-          <div class="date-info">
-              <div class="current-date"><%= DateTime.Now.ToString("dddd, MMMM dd, yyyy") %></div>
-              <div class="current-time"><%= DateTime.Now.ToString("hh:mm tt") %></div>
-          </div>
-      </div>
-      
-      <!-- Book Management Section -->
-      <div class="content-grid">
+                  <div class="top-bar">
+                      <h1 class="page-title">
+                        <i class="fas fa-bookmark"></i>
+                          Borrowers
+                      </h1>
+                  </div>
+
+  <!-- Book Management Section -->
+  <div class="content-grid">
           <!-- Book Form -->
           <div class="card form-card">
               <h2 class="form-title"><i class="fas fa-plus-circle"></i>Add Borrower</h2>

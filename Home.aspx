@@ -331,6 +331,7 @@
                         Dashboard
                     </h1>
                     <div class="date-info">
+                    <div class="user-name" style="font-weight: 600; color: var(--primary); margin-left: 20px;"></div>
                         <div class="current-date"><%= DateTime.Now.ToString("dddd, MMMM dd, yyyy") %></div>
                         <div class="current-time"><%= DateTime.Now.ToString("hh:mm tt") %></div>
                     </div>
@@ -394,11 +395,21 @@
                     sidebar.classList.toggle('active');
                 });
             }
+
+            // Display user name from localStorage
+            const userFullName = localStorage.getItem('userFullName');
+            if (userFullName) {
+                const nameElem = document.querySelector('.user-name');
+                if (nameElem) {
+                    nameElem.textContent = "Welcome Back, " + userFullName;
+                }
+            }
         });
 
         const logout = () => {
             const cf = confirm("Are you sure you want to logout?")
             if (!cf) return
+            localStorage.clear()
             window.location.href = "login.aspx"
         }
     </script>

@@ -319,12 +319,6 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="txtLibraryID" class="form-label">Library ID</label>
-                    <asp:TextBox ID="txtLibraryID" runat="server" CssClass="form-input" placeholder="Enter your library ID" />
-                    <div class="error-message">Please enter your library ID</div>
-                </div>
-                
-                <div class="form-group">
                     <label for="txtPassword" class="form-label">Password</label>
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-input" placeholder="Create a password" />
                     <div class="error-message">Password must be at least 8 characters</div>
@@ -336,8 +330,8 @@
                     <div class="error-message">Passwords do not match</div>
                 </div>
                 
-                <asp:Button ID="btnSignup" runat="server" Text="Create Account" CssClass="btn-signup" />
-                
+                <asp:Button ID="Button1" runat="server" Text="Create Account" CssClass="btn-signup" OnClick="btnSignup_Click" />
+
                 <div class="form-footer">
                     <span class="form-footer-text">Already have an account? </span>
                     <a href="Login.aspx" class="form-footer-link">Sign in</a>

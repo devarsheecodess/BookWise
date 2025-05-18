@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="LibrarySystem.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="LibrarySystem.Login" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -365,10 +365,10 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="txtLibraryId">Library ID</label>
+                    <label for="txtEmail">Email</label>
                     <div class="input-wrapper">
-                        <input id="txtLibraryId" type="text" runat="server" placeholder="Enter your library ID" />
-                        <div class="error-message">Please enter your Library ID</div>
+                        <input id="txtEmail" type="text" runat="server" placeholder="Enter your Email" />
+                        <div class="error-message">Please enter your Email</div>
                     </div>
                 </div>
                 
@@ -380,7 +380,7 @@
                     </div>
                 </div>
                 
-                <input id="btnLogin" type="submit" value="Sign In" class="login-btn" runat="server" />
+                <input id="Submit1" type="submit" value="Sign In" class="login-btn" runat="server" OnServerClick="btnLogin_ServerClick" />
                 
                 <div class="signup-prompt">
                     Don't have an account? 
