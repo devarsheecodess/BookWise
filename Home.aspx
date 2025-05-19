@@ -293,6 +293,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <input type="hidden" id="HiddenUserID" runat="server" />
+
         <div class="dashboard-container">
             <!-- Sidebar -->
             <div class="sidebar">
@@ -344,7 +346,7 @@
                             <i class="fas fa-book-open"></i>
                         </div>
                         <div class="stat-data">
-                            <div class="stat-value">0</div>
+                            <div class="stat-value" id="BooksTotalValue" runat="server">0</div>
                             <div class="stat-label">Total Books</div>
                         </div>
                     </div>
@@ -354,7 +356,7 @@
                             <i class="fas fa-book-reader"></i>
                         </div>
                         <div class="stat-data">
-                            <div class="stat-value">0</div>
+                            <div class="stat-value" id="BooksBorrowedValue" runat="server">0</div>
                             <div class="stat-label">Books Borrowed</div>
                         </div>
                     </div>
@@ -364,23 +366,14 @@
                             <i class="fas fa-exclamation-circle"></i>
                         </div>
                         <div class="stat-data">
-                            <div class="stat-value">0</div>
+                            <div class="stat-value" id="BooksOverdueValue" runat="server">0</div>
                             <div class="stat-label">Overdue Books</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card active-users">
-                        <div class="stat-icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                        <div class="stat-data">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">Active Members</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <asp:Button ID="btnDummy" runat="server" Style="display:none" />
     </form>
 
     <script>
@@ -404,6 +397,19 @@
                     nameElem.textContent = "Welcome Back, " + userFullName;
                 }
             }
+
+            // Assign localStorage userID to hidden input
+            const userID = localStorage.getItem('userID');
+            if (userID) {
+                var hiddenInput = document.getElementById('<%= HiddenUserID.ClientID %>');
+            if (hiddenInput) {
+                hiddenInput.value = userID;
+                // Delay postback a bit to ensure value is set
+                setTimeout(() => {
+                    __doPostBack('', '');
+                }, 100);
+            }
+        }
         });
 
         const logout = () => {

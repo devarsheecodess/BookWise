@@ -41,81 +41,71 @@
         }
 
         /* Sidebar Styles */
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-            position: fixed;
-            height: 100vh;
-            z-index: 100;
-        }
+.sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
 
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
 
-        .logo-icon {
-            font-size: 24px;
-            margin-right: 10px;
-        }
+.logo-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
 
-        .sidebar-brand {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin: 0;
-        }
+.sidebar-brand {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
 
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 0.875rem 1rem;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            transition: var(--transition);
-            font-weight: 500;
-        }
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+    font-weight: 500;
+}
 
-        .nav-link i {
-            margin-right: 12px;
-            font-size: 1.1rem;
-            width: 24px;
-            text-align: center;
-        }
+.nav-link i {
+    margin-right: 12px;
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
 
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
 
-        .nav-link.active {
-            background-color: var(--white);
-            color: var(--primary);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-        }
-
-        .user-section {
-            margin-top: auto;
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
+.nav-link.active {
+    background-color: var(--white);
+    color: var(--primary);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
 
         /* Main Content Styles */
         .main-content {
@@ -666,38 +656,69 @@
         font-size: 16px; /* Prevents zoom on iOS */
     }
 }
+
+        /* Logout button style */
+      .logout-btn {
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    color: var(--white) !important;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: rgba(231, 29, 54, 0.2);
+}
+
+        .logout-btn i {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <span class="logo-icon"><i class="fas fa-book-open"></i></span>
-                <h2 class="sidebar-brand">BookWise</h2>
-            </div>
-
-            <div class="nav-menu">
-                <a href="Home.aspx" class="nav-link">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="Books.aspx" class="nav-link active">
-                    <i class="fas fa-book"></i>
-                    <span>Books</span>
-                </a>
-                <a href="AddBorrowed.aspx" class="nav-link">
-                    <i class="fas fa-bookmark"></i>
-                    <span>Borrowed Books</span>
-                </a>
-            </div>
-        </div>
+            <div class="dashboard-container">
+            <!-- Sidebar -->
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+        <h2 class="sidebar-brand">BookWise</h2>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="Home.aspx" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>                    
+            <span>Dashboard</span>
+        </a>
+        <a href="Books.aspx" class="nav-link active">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+        </a>
+        <a href="AddBorrowed.aspx" class="nav-link">
+            <i class="fas fa-bookmark"></i>
+            <span>Borrowed Books</span>
+        </a>
+    </div>
+    
+    <!-- Logout Button -->
+    <a class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+    </a>
+</div>
 
         <div class="main-content">
             <div class="top-bar">
                 <div>
                     <h1 class="page-title">
                         <i class="fas fa-plus-circle"></i>
-                        Add New Book
+                        Books
                     </h1>
                 </div>
             </div>
@@ -846,6 +867,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             var searchInput = document.getElementById('txtLiveSearch');
+            sessionStorage.setItem("hasReloaded", "false");
             var hdnSearchTerm = document.getElementById('<%= hdnSearchTerm.ClientID %>');
             var btnTriggerSearchUniqueID = '<%= btnTriggerSearch.UniqueID %>';
             var timer = null;
